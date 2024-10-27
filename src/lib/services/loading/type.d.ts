@@ -1,0 +1,3 @@
+interface AppSuspenseProps {
+	children: any;
+}

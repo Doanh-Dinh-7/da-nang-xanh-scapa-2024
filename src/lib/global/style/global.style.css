@@ -1,0 +1,69 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* Custom Radix UI */
+/* https://github.com/radix-ui/themes/tree/main/packages/radix-ui-themes/src/styles/tokens */
+.radix-themes {
+    /* Typography */
+    --default-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto, "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji";
+    --default-font-size: var(--font-size-2);
+
+    --heading-font-family: "Montserrat", var(--default-font-family);
+    --heading-font-size-adjust: 1.5;
+
+    /* Button */
+    --cursor-button: pointer;
+
+    /* Containers */
+    --container-1: 326px;
+    --container-2: 704px;
+    --container-3: 1216px;
+    --container-4: 1376px;
+}
+
+body {
+    margin: unset;
+    width: 100%;
+}
+
+* {
+    transition: 0.3s;
+}
+
+.rt-Container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+
+    @media (min-width: 1024px) {
+        padding-left: unset;
+        padding-right: unset;
+    }
+}
+
+.text-ellipsis {
+    --line-clamp: 2;
+    -webkit-line-clamp: var(--line-clamp);
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.swiper-button-prev {
+    left: auto;
+    margin-left: var(--space-6);
+    width: unset;
+}
+
+.swiper-button-next {
+    left: auto;
+    margin-right: var(--space-6);
+    width: unset;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    display: none;
+}

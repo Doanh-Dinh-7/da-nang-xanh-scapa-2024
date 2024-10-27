@@ -1,0 +1,10 @@
+.container {
+	.title {
+		--heading-letter-spacing: 0.12em;
+		font-weight: var(--font-weight-light) !important;
+	}
+
+	.description {
+		color: var(--gray-9);
+	}
+}

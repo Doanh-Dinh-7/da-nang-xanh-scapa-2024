@@ -1,0 +1,3 @@
+type FontServiceState = {
+	isLoading: boolean;
+};

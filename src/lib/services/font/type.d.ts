@@ -1,0 +1,3 @@
+interface FontProviderProps {
+	children: any;
+}

@@ -1,0 +1,12 @@
+.line {
+	width: 16rem;
+	height: 0.5px;
+	background-color: var(--gray-8);
+}
+
+.title {
+	--heading-letter-spacing: 0.16em;
+	color: var(--gray-8);
+	font-weight: var(--font-weight-light);
+	white-space: nowrap;
+}

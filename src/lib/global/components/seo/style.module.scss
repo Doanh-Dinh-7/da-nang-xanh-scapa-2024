@@ -1,0 +1,49 @@
+.footer {
+	background-color: var(--accent-12);
+
+	&-top {
+		.introduction {
+			.logo {
+				& > img {
+					width: auto !important;
+					height: 3rem !important;
+				}
+
+				& > span.name {
+					color: var(--accent-2);
+				}
+			}
+
+			p.description {
+				color: var(--accent-7);
+			}
+		}
+
+		.navigation {
+			.header {
+				font-weight: 600;
+				color: var(--accent-9);
+			}
+
+			.item {
+				color: var(--accent-7);
+			}
+		}
+	}
+
+	&-bottom {
+		background-color: var(--sage-12);
+
+		p.description {
+			color: var(--accent-7);
+		}
+
+		.social {
+			color: var(--accent-7);
+
+			&:hover {
+				color: var(--accent-9);
+			}
+		}
+	}
+}

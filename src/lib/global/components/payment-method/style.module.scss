@@ -1,0 +1,29 @@
+.payment-method {
+	cursor: pointer;
+
+	.icon {
+		padding: var(--space-3);
+		box-shadow: inset 0px 0px 0px 1px var(--gray-5);
+		border-radius: var(--radius-4);
+	}
+
+	.text {
+		color: var(--gray-11);
+	}
+
+	&:hover {
+		.icon {
+			box-shadow: inset 0px 0px 0px 1px var(--accent-9);
+		}
+	}
+
+	&.selected {
+		.icon {
+			box-shadow: inset 0px 0px 0px 1px var(--accent-9);
+		}
+
+		.text {
+			color: var(--accent-11);
+		}
+	}
+}

@@ -1,0 +1,19 @@
+.my-overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 999;
+	transition: unset;
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: var(--gray-12);
+		opacity: 0.6;
+	}
+}
