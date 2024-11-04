@@ -3706,6 +3706,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-leaflet/core@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@react-leaflet/core@npm:2.1.0"
+  peerDependencies:
+    leaflet: ^1.9.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 10c0/d5218c79ab9decd458e1fa8a0ec3757542e3ea4e569afa151a32ef0e9ceb63a13174f3fbc740fe0d514df8b0b3e30d913bfb0b8b661dac13924934d7e430bfc9
+  languageName: node
+  linkType: hard
+
 "@reduxjs/toolkit@npm:^2.2.3":
   version: 2.2.3
   resolution: "@reduxjs/toolkit@npm:2.2.3"
@@ -4168,6 +4179,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/geojson@npm:*":
+  version: 7946.0.14
+  resolution: "@types/geojson@npm:7946.0.14"
+  checksum: 10c0/54f3997708fa2970c03eeb31f7e4540a0eb6387b15e9f8a60513a1409c23cafec8d618525404573468b59c6fecbfd053724b3327f7fca416729c26271d799f55
+  languageName: node
+  linkType: hard
+
 "@types/graceful-fs@npm:^4.1.2":
   version: 4.1.9
   resolution: "@types/graceful-fs@npm:4.1.9"
@@ -4245,6 +4263,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-cookie@npm:^3":
+  version: 3.0.6
+  resolution: "@types/js-cookie@npm:3.0.6"
+  checksum: 10c0/173afaf5ea9d86c22395b9d2a00b6adb0006dcfef165d6dcb0395cdc32f5a5dcf9c3c60f97194119963a15849b8f85121e1ae730b03e40bc0c29b84396ba22f9
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -4256,6 +4281,15 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 10c0/6bf5337bc447b706bb5b4431d37686aa2ea6d07cfd6f79cc31de80170d6ff9b1c7384a9c0ccbc45b3f512bae9e9f75c2e12109806a15331dc94e8a8db6dbb4ac
+  languageName: node
+  linkType: hard
+
+"@types/leaflet@npm:^1.9.14":
+  version: 1.9.14
+  resolution: "@types/leaflet@npm:1.9.14"
+  dependencies:
+    "@types/geojson": "npm:*"
+  checksum: 10c0/0c7df77581d62e0c6b106b5f8718001e7f0feec8caea0bfcd03c91204dd5b431a4f32df7b482318c9f7942e892058a8f8decebe8b1a517b9bcdf6ab508c44060
   languageName: node
   linkType: hard
 
@@ -5780,9 +5814,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001587, caniuse-lite@npm:^1.0.30001599":
-  version: 1.0.30001614
-  resolution: "caniuse-lite@npm:1.0.30001614"
-  checksum: 10c0/54873ef47f5f04448f1dafe371dece0129f1f2e4644c377956e66ebfa4bfa16dd3529062b7b4d95d9e3a80129907558c19200532669c6dcd5733eff724fdf2b6
+  version: 1.0.30001673
+  resolution: "caniuse-lite@npm:1.0.30001673"
+  checksum: 10c0/0e73a2b0f06973052e563dec9990a6fd440d510fa2ff54fa50310e736abb86e96c96b43c10e609fc22f2109f98fe76428b70441baf6b1a49f69ccf50c1879f6b
   languageName: node
   linkType: hard
 
@@ -10070,6 +10104,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-cookie@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "js-cookie@npm:3.0.5"
+  checksum: 10c0/04a0e560407b4489daac3a63e231d35f4e86f78bff9d792011391b49c59f721b513411cd75714c418049c8dc9750b20fcddad1ca5a2ca616c3aca4874cce5b3a
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -10323,6 +10364,13 @@ __metadata:
     picocolors: "npm:^1.0.0"
     shell-quote: "npm:^1.8.1"
   checksum: 10c0/82d0bd9a44e7a972157719e63dac1b8196db6ec7066c1ec57a495f6c3d6e734f3c4da89549e7b33eb3b0356668ad02a9e7782b6733f5ebd7a61b7c5f635a3ee9
+  languageName: node
+  linkType: hard
+
+"leaflet@npm:^1.9.4":
+  version: 1.9.4
+  resolution: "leaflet@npm:1.9.4"
+  checksum: 10c0/f639441dbb7eb9ae3fcd29ffd7d3508f6c6106892441634b0232fafb9ffb1588b05a8244ec7085de2c98b5ed703894df246898477836cfd0ce5b96d4717b5ca1
   languageName: node
   linkType: hard
 
@@ -12807,6 +12855,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-leaflet@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "react-leaflet@npm:4.2.1"
+  dependencies:
+    "@react-leaflet/core": "npm:^2.1.0"
+  peerDependencies:
+    leaflet: ^1.9.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 10c0/2e9d1687e883fd7d2e9798e51a04600e1b14784dc98b981a44507e65eb39a24f08c7f237c7522ae5667e999eb53b8d565ebd0f5baa25ef73a0278d6bfcc369e1
+  languageName: node
+  linkType: hard
+
 "react-redux@npm:^9.1.1":
   version: 9.1.1
   resolution: "react-redux@npm:9.1.1"
@@ -14482,6 +14543,8 @@ __metadata:
     "@tanstack/react-query-devtools": "npm:^5.32.0"
     "@types/fontfaceobserver": "npm:^2.1.3"
     "@types/jest": "npm:^29.5.12"
+    "@types/js-cookie": "npm:^3"
+    "@types/leaflet": "npm:^1.9.14"
     "@types/lodash.debounce": "npm:^4.0.9"
     "@types/node": "npm:^20.12.7"
     "@types/react": "npm:^18.3.1"
@@ -14494,6 +14557,8 @@ __metadata:
     framer-motion: "npm:^11.1.7"
     global: "npm:^4.4.0"
     husky: "npm:^9.0.11"
+    js-cookie: "npm:^3.0.5"
+    leaflet: "npm:^1.9.4"
     lint-staged: "npm:^15.2.2"
     lodash.debounce: "npm:^4.0.8"
     prettier: "npm:^3.2.5"
@@ -14503,6 +14568,7 @@ __metadata:
     react-helmet: "npm:^6.1.0"
     react-hook-form: "npm:^7.51.3"
     react-intl: "npm:^6.6.5"
+    react-leaflet: "npm:^4.2.1"
     react-redux: "npm:^9.1.1"
     react-responsive: "npm:^10.0.0"
     react-router-dom: "npm:^6.23.0"

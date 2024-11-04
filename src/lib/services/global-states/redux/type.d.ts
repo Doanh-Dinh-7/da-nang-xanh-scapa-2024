@@ -1,7 +1,5 @@
-import { OrderInfoFormData } from "@pages/checkout/components/order-info/type";
+import { IUser } from "@api/http-request/requests/api-server/models/user";
 
 export type GlobalStatesState = {
-	isCartShow: boolean;
-	isOrderFormValid: boolean;
-	orderFormData: Partial<OrderInfoFormData>;
+    user?: IUser;
 };

@@ -1,13 +1,12 @@
-import { Box, Flex, Heading, Text } from "@radix-ui/themes";
-import { PaperProps } from "./type";
-import style from "./style.module.scss";
+import { Icon } from "@components";
+import { Flex, Text } from "@radix-ui/themes";
 import Image1 from "./images/decors/image1.png";
 import Image2 from "./images/decors/image2.png";
 import Image3 from "./images/decors/image3.png";
 import Image4 from "./images/decors/image4.png";
 import Image5 from "./images/decors/image5.png";
 import Image6 from "./images/decors/image6.png";
-import { Icon } from "@components";
+import { PaperProps } from "./type";
 
 export const Paper = ({ ...props }: PaperProps) => {
     return (

@@ -1,7 +1,6 @@
-import { Box, Flex, Heading, Text } from "@radix-ui/themes";
-import { ContentProps } from "./type";
-import style from "./style.module.scss";
+import { Box, Flex, Text } from "@radix-ui/themes";
 import DemoPic from "./images/DragonBridge.png";
+import { ContentProps } from "./type";
 
 export const Content = ({ ...props }: ContentProps) => {
     return (

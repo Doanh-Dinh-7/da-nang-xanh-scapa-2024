@@ -1,12 +1,11 @@
 import { Seo } from "@global/components";
-import { Container, Flex, Heading, Section, Text } from "@radix-ui/themes";
-
+import { Flex } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
-import { MembersPageProps } from "./type";
-import { TypeNews } from "./components/typeNew";
-import { Trash } from "./components/trash";
 import { Collaborator } from "./components/collaborator";
+import { Trash } from "./components/trash";
+import { TypeNews } from "./components/typeNew";
 import { User } from "./components/user";
+import { MembersPageProps } from "./type";
 
 export const MembersPage = ({}: MembersPageProps) => {
     useEffect(() => window.scrollTo({ behavior: "smooth", top: 0 }));

@@ -1,8 +1,7 @@
-import { Box, Flex, Heading, Text } from "@radix-ui/themes";
-import { HeadProps } from "./type";
-import Chart from "./images/Chart.png";
-import style from "./style.module.scss";
 import { Icon } from "@components";
+import { Flex, Text } from "@radix-ui/themes";
+import Chart from "./images/Chart.png";
+import { HeadProps } from "./type";
 
 export const Head = ({ ...props }: HeadProps) => {
     return (

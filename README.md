@@ -1,4 +1,4 @@
-# React Frontend - SMART CAMPUS CAMPAIGN ASIA PACIFIC [SCAPA 2024] - DaNangGreenProject
+# React Frontend - Danang Xanh
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

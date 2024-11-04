@@ -1,6 +1,5 @@
-import { Box, Flex, Text } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 import { TrashProps } from "./type";
-import style from "./style.module.scss";
 
 export const Trash = ({ ...props }: TrashProps) => {
     return (

@@ -1,10 +1,12 @@
-import { Flex, Heading, Text } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 import { ViewProps } from "./type";
 
-import style from "./style.module.scss";
+import { useAppSelector } from "@store";
 import Start from "./images/star.png";
 
 export const View = ({ ...props }: ViewProps) => {
+    const { user } = useAppSelector((state) => state.globalStates);
+
     return (
         <Flex align="center" gap="8" style={{ justifyContent: "space-between", width: "75vw" }} {...props}>
             <Flex
@@ -24,7 +26,7 @@ export const View = ({ ...props }: ViewProps) => {
                         Bạn đã có
                     </Text>
                     <Flex gap="5" style={{ color: "#6CE9A6", fontWeight: "700" }}>
-                        <Text size="9">104</Text>
+                        <Text size="9">{user?.greenPoint}</Text>
                         <Text size="3">ĐIỂM XANH</Text>
                     </Flex>
                 </Flex>

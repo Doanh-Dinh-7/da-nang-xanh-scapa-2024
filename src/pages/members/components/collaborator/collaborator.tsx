@@ -1,8 +1,7 @@
-import { Flex, Text } from "@radix-ui/themes";
-import { CollaboratorProps } from "./type";
-import style from "./style.module.scss";
 import { Icon } from "@components";
+import { Flex, Text } from "@radix-ui/themes";
 import Avatar from "./images/Avatar.png";
+import { CollaboratorProps } from "./type";
 
 export const Collaborator = ({ ...props }: CollaboratorProps) => {
     return (

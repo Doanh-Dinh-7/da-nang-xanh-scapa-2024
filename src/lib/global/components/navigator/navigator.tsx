@@ -1,11 +1,18 @@
-import { Button, Container, Flex, Heading, Text } from "@radix-ui/themes";
+import { useApiMe } from "@api/http-request/requests/api-server/hooks/user";
+import { Icon } from "@components";
+import { Avatar, Button, Container, Flex, Heading, Text } from "@radix-ui/themes";
+import { pushErrorNotification } from "@services/notification";
+import { useAppDispatch } from "@store";
+import { stringifyRequestError } from "@utilities";
 import cls from "classnames";
-import { NavLink, useLocation } from "react-router-dom";
-import { NavigatorProps } from "./type";
-import Logo from "../../images/logo/logoDNxanh.png";
+import { useEffect } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import LogoDemo from "../../images/logo/logoDNxanhDemo.jpg";
 import styles from "./style.module.scss";
-import { Icon } from "@components";
+import { NavigatorProps } from "./type";
+import { removeAccessToken } from "@services/cookie";
+import { removeUser, setUser } from "@services/global-states";
+import { Role } from "@api/http-request/requests/api-server/models/user";
 
 const navigationItems = [
     {
@@ -45,16 +52,71 @@ const navigationItems = [
     },
 ];
 
+const excludeNavigator = ["/claim-reward"];
+
 export const Navigator = ({ className, ...props }: NavigatorProps) => {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const location = useLocation();
 
-    // Kiểm tra nếu URL là /login thì không hiển thị Navigator
-    if (location.pathname === "/login") return null;
+    const isAuthPage = ["/login", "/register"].includes(location.pathname);
+
+    const { mutateAsync, data: user, isPending } = useApiMe();
+
+    useEffect(() => {
+        if (isAuthPage) return;
+
+        mutateAsync()
+            .then((user) => {
+                dispatch(setUser(user));
+            })
+            .catch((error) => {
+                const status = error.response?.status;
+
+                if (status === 401) {
+                    dispatch(removeAccessToken());
+                    dispatch(removeUser());
+
+                    navigate("/login", {
+                        replace: true,
+                        state: {
+                            redirectUrl: `${location.pathname}${location.search}`,
+                        },
+                    });
+                    return;
+                }
+
+                dispatch(
+                    pushErrorNotification({
+                        message: "Không thể lấy thông tin người dùng",
+                        description: stringifyRequestError(error),
+                    })
+                );
+            });
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isAuthPage]);
+
+    // Check not render the navigator case
+    if (isAuthPage) return null;
+    if (excludeNavigator.includes(location.pathname)) return null;
+
+    const handleLogout = () => {
+        dispatch(removeAccessToken());
+        dispatch(removeUser());
+        navigate("/login", {
+            replace: true,
+            state: {
+                redirectUrl: `${location.pathname}${location.search}`,
+            },
+        });
+    };
 
     return (
         <Container className={cls(styles["container"], className)} {...props}>
             <Flex direction="column" align="stretch" gap="9">
-                <Flex direction="column" justify="center" align="stretch" gap="1" wrap="wrap">
+                <Flex direction="column" justify="center" align="stretch" gap="6" wrap="wrap">
                     <Flex justify="center" align="center">
                         <div style={{ borderRadius: "5px", backgroundColor: "white", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", padding: "2px" }}>
                             <div
@@ -73,25 +135,31 @@ export const Navigator = ({ className, ...props }: NavigatorProps) => {
                             ĐÀ NẴNG XANH
                         </Heading>
                     </Flex>
-                    {navigationItems.map(({ title, icon, to }) => (
-                        <NavLink key={title} to={to} className={styles["nav-link"]}>
-                            {({ isActive }) => (
-                                <Flex justify="start" align="center" className={cls(styles["text"], isActive && styles["active"])}>
-                                    <Icon ri={icon} className={cls(styles["icon"], isActive && styles["active"])} />
-                                    {title}
-                                </Flex>
-                            )}
-                        </NavLink>
-                    ))}
+
+                    <Flex direction="column">
+                        {navigationItems.map(({ title, icon, to }) => (
+                            <NavLink key={title} to={to} className={styles["nav-link"]}>
+                                {({ isActive }) => (
+                                    <Flex justify="start" align="center" className={cls(styles["text"], isActive && styles["active"])}>
+                                        <Icon ri={icon} className={cls(styles["icon"], isActive && styles["active"])} />
+                                        {title}
+                                    </Flex>
+                                )}
+                            </NavLink>
+                        ))}
+                    </Flex>
                 </Flex>
                 <Flex direction="column">
                     <Flex direction="column" ml="4" style={{ fontWeight: "600" }}>
-                        <NavLink to="/members" style={{ color: "red", textDecoration: "none" }}>
-                            <Text size="2" style={{ cursor: "pointer" }}>
-                                <Icon ri="ri-emotion-happy-line" size="3" style={{ marginRight: "2vw", background: "#FEE4E2", padding: "5px", borderRadius: "5px" }} />
-                                Cộng tác viên
-                            </Text>
-                        </NavLink>
+                        {user && [Role.ADMIN, Role.CONTRIBUTOR].includes(user.role) && (
+                            <NavLink to="/members" style={{ color: "red", textDecoration: "none" }}>
+                                <Text size="2" style={{ cursor: "pointer" }}>
+                                    <Icon ri="ri-emotion-happy-line" size="3" style={{ marginRight: "2vw", background: "#FEE4E2", padding: "5px", borderRadius: "5px" }} />
+                                    Cộng tác viên
+                                </Text>
+                            </NavLink>
+                        )}
+
                         <Text size="2" style={{ cursor: "pointer" }}>
                             <Icon ri="ri-lifebuoy-line" size="3" style={{ marginRight: "2vw", padding: "5px" }} />
                             Trợ giúp
@@ -102,14 +170,30 @@ export const Navigator = ({ className, ...props }: NavigatorProps) => {
                         </Text>
                     </Flex>
                     <div style={{ border: "1px solid gray", margin: "2vh 0" }}></div>
-                    <Flex direction="column">
-                        <NavLink to="/login">
-                            <Button>Đăng nhập ngay!</Button>
-                        </NavLink>
-                        <Text color="gray" mt="3">
-                            Cộng đồng đã tích <span style={{ color: "green", fontWeight: "600" }}>120k điểm xanh</span>. <br /> Còn bạn thì sao?
-                        </Text>
-                    </Flex>
+                    {user && (
+                        <Flex direction="column" gap="4">
+                            <Flex align="center" gap="4">
+                                <Avatar fallback={user.firstName[0]} radius="full" />
+                                <Text color="gray" weight="bold">
+                                    Xin chào, <span style={{ color: "green", fontWeight: "600" }}>{user.firstName}</span>!
+                                </Text>
+                            </Flex>
+                            <Button variant="soft" onClick={handleLogout}>
+                                Đăng xuất
+                            </Button>
+                        </Flex>
+                    )}
+
+                    {!isPending && !user && (
+                        <Flex direction="column">
+                            <NavLink to="/login">
+                                <Button>Đăng nhập ngay!</Button>
+                            </NavLink>
+                            <Text color="gray" mt="3">
+                                Cộng đồng đã tích <span style={{ color: "green", fontWeight: "600" }}>120k điểm xanh</span>. <br /> Còn bạn thì sao?
+                            </Text>
+                        </Flex>
+                    )}
                 </Flex>
             </Flex>
         </Container>

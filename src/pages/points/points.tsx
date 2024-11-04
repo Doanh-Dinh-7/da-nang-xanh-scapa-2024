@@ -1,11 +1,11 @@
 import { Seo } from "@global/components";
-import { Container, Flex, Heading, Section, Text } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 
-import { useEffect, useState } from "react";
-import { PointPageProps } from "./type";
-import { View } from "./components/view";
-import { Products } from "./components/products";
 import { Icon } from "@components";
+import { useEffect } from "react";
+import { Products } from "./components/products";
+import { View } from "./components/view";
+import { PointPageProps } from "./type";
 
 export const PointPage = ({}: PointPageProps) => {
     useEffect(() => window.scrollTo({ behavior: "smooth", top: 0 }));

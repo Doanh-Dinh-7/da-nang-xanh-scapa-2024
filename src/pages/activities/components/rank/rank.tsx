@@ -1,14 +1,13 @@
-import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
-import { RankProps } from "./type";
-import { useState } from "react";
-import style from "./style.module.scss";
 import { Icon } from "@components";
-import Team1 from "./images/team/Team1.png";
-import Team2 from "./images/team/Team2.png";
-import Team3 from "./images/team/Team3.png";
+import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { useState } from "react";
 import Rank1 from "./images/ranking/rank1.png";
 import Rank2 from "./images/ranking/rank2.png";
 import Rank3 from "./images/ranking/rank3.png";
+import Team1 from "./images/team/Team1.png";
+import Team2 from "./images/team/Team2.png";
+import Team3 from "./images/team/Team3.png";
+import { RankProps } from "./type";
 
 export const Rank = ({ ...props }: RankProps) => {
     const [dateTime, setDateTime] = useState(3);

@@ -1,4 +1,4 @@
-import { Footer, Navigator, Splash, Toast } from "@global/components";
+import { Navigator, Toast } from "@global/components";
 import { Box, Flex, Theme } from "@radix-ui/themes";
 import { AppSuspense } from "@services/loading";
 import { MotionConfig } from "framer-motion";
@@ -10,6 +10,9 @@ import "remixicon/fonts/remixicon.css";
 
 // Radix UI
 import "@radix-ui/themes/styles.css";
+
+// Leaflet
+import "leaflet/dist/leaflet.css";
 
 // Global style
 import "./style/global.style.css";

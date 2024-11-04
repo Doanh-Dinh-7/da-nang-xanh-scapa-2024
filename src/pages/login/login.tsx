@@ -1,20 +1,69 @@
-import { Seo } from "@global/components";
-import { useEffect, useState } from "react";
-import { Container, Flex, Heading, Button, Text } from "@radix-ui/themes";
-import { LoginPageProps } from "./type";
-import styles from "./styles.module.scss";
-import Logo from "./images/logo/logoDNxanhDemo.jpg";
-import BKDNlogo from "./images/logo/bkdn.png";
-import DNlogo from "./images/logo/DoanDN.png";
-import BannerImage from "./images/bgDragon.png";
+import { useApiLogin } from "@api/http-request/requests/api-server/hooks/user";
 import { Icon } from "@components";
-import { NavLink } from "react-router-dom";
+import { Seo } from "@global/components";
+import { Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { pushErrorNotification } from "@services/notification";
+import { useAppDispatch, useAppSelector } from "@store";
+import { stringifyFormError, stringifyRequestError } from "@utilities";
+import { useEffect, useState } from "react";
+import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
+import BannerImage from "./images/bgDragon.png";
+import Logo from "./images/logo/logoDNxanhDemo.jpg";
+import { LoginFormInput, LoginPageProps } from "./type";
+import { setAccessToken } from "@services/cookie";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // import IconQuestion from "../../images/icons/iconQuestion.png";
 // import IconSettings from "../../images/icons/iconSettings.png";
 
 export const LoginPage = ({}: LoginPageProps) => {
-    useEffect(() => window.scrollTo({ behavior: "smooth", top: 0 }));
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    const { state } = useLocation();
+
+    const { accessToken } = useAppSelector((state) => state.cookie);
+
+    const { register, handleSubmit } = useForm<LoginFormInput>();
+
+    const { mutateAsync, isPending } = useApiLogin();
+
+    useEffect(() => {
+        if (accessToken) {
+            const redirectUrl = state?.redirectUrl || "/";
+            navigate(redirectUrl, {
+                replace: true,
+            });
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [accessToken]);
+
+    const handleSendMessageSuccess: SubmitHandler<LoginFormInput> = async (data) => {
+        try {
+            const loginResponse = await mutateAsync({
+                email: data.email,
+                password: data.password,
+            });
+
+            dispatch(setAccessToken(loginResponse.accessToken));
+        } catch (error: any) {
+            dispatch(
+                pushErrorNotification({
+                    message: "Không thể đăng nhập",
+                    description: stringifyRequestError(error),
+                })
+            );
+        }
+    };
+
+    const handleSendMessageError: SubmitErrorHandler<LoginFormInput> = (error) => {
+        dispatch(
+            pushErrorNotification({
+                message: "Không thể đăng nhập",
+                description: stringifyFormError(error),
+            })
+        );
+    };
 
     // Trạng thái kiểm tra xem mật khẩu đang được ẩn hay hiển thị
     const [showPassword, setShowPassword] = useState(true);
@@ -71,35 +120,49 @@ export const LoginPage = ({}: LoginPageProps) => {
                             Đăng nhập
                         </Heading>
 
-                        <form action="#">
+                        <form onSubmit={handleSubmit(handleSendMessageSuccess, handleSendMessageError)}>
                             <Flex className="abc" direction="column" gap="3">
                                 <div className="xyz" style={{ color: "#667085", padding: "1.2vh 1vw", border: "1px solid #667085", borderRadius: "5px" }}>
                                     <Icon ri="ri-mail-line" style={{ marginRight: "1vw" }} />
-                                    <input type="email" name="email" id="email" placeholder="Email" style={{ border: "none", outline: "none" }} />
+                                    <input
+                                        id="email"
+                                        placeholder="Email"
+                                        style={{ border: "none", outline: "none" }}
+                                        {...register("email", {
+                                            validate: {
+                                                required: (value) => value.trim().length > 0 || "Vui lòng nhập email",
+                                                email: (value) => /\S+@\S+\.\S+/.test(value) || "Email không hợp lệ",
+                                            },
+                                        })}
+                                    />
                                 </div>
                                 <div style={{ color: "#667085", padding: "1.2vh 1vw", border: "1px solid #667085", borderRadius: "5px" }}>
                                     <Icon ri="ri-key-2-line" style={{ marginRight: "1vw" }} />
                                     <input
                                         type={showPassword ? "password" : "text"}
-                                        name="password"
                                         id="password"
                                         placeholder="Mật khẩu"
                                         style={{ border: "none", outline: "none" }}
+                                        {...register("password", {
+                                            validate: {
+                                                required: (value) => value.trim().length > 0 || "Vui lòng nhập mật khẩu",
+                                            },
+                                        })}
                                     />
                                     <Icon ri={showPassword ? "ri-eye-off-line" : "ri-eye-line"} onClick={togglePasswordVisibility} />
                                 </div>
-                                <NavLink to="/">
-                                    <Button mt="3" style={{ width: "100%", cursor: "pointer" }}>
-                                        Đăng nhập ngay!
-                                    </Button>
-                                </NavLink>
+                                <Button type="submit" mt="3" style={{ width: "100%", cursor: "pointer" }} loading={isPending}>
+                                    Đăng nhập ngay!
+                                </Button>
                             </Flex>
                         </form>
                         <Flex gap="5">
                             <Text style={{ color: "#667085", cursor: "pointer" }}>Chưa có tài khoản?</Text>
-                            <Text color="green" style={{ cursor: "pointer" }}>
-                                Đăng ký ngay
-                            </Text>
+                            <Link to="/register" style={{ textDecoration: "none" }}>
+                                <Text color="green" style={{ cursor: "pointer" }}>
+                                    Đăng ký ngay
+                                </Text>
+                            </Link>
                         </Flex>
                     </Flex>
                 </Flex>

@@ -1,9 +1,9 @@
 import { Seo } from "@global/components";
-import { Button, Container, Flex, Heading, Section, Text } from "@radix-ui/themes";
+import { Button, Flex, Text } from "@radix-ui/themes";
 import { useEffect } from "react";
-import { InfoPageProps } from "./type";
-import ImageDemo from "./pictures/DragonBridge.png";
 import AvatarDemo from "./pictures/Avatar.png";
+import ImageDemo from "./pictures/DragonBridge.png";
+import { InfoPageProps } from "./type";
 
 export const InfoPage = ({}: InfoPageProps) => {
     useEffect(() => window.scrollTo({ behavior: "smooth", top: 0 }));

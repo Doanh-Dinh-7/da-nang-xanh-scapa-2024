@@ -1,12 +1,12 @@
 import { Seo } from "@global/components";
-import { Container, Flex, Heading, Section, Text } from "@radix-ui/themes";
-import { SortedWaste } from "./components/sortedWaste";
+import { Flex, Text } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
-import { AnalysisPageProps } from "./type";
-import { Landfill } from "./components/landfill";
-import { Point } from "./components/point";
 import { Bottom } from "./components/bottom";
 import { Chart } from "./components/chart";
+import { Landfill } from "./components/landfill";
+import { Point } from "./components/point";
+import { SortedWaste } from "./components/sortedWaste";
+import { AnalysisPageProps } from "./type";
 
 export const AnalysisPage = ({}: AnalysisPageProps) => {
     useEffect(() => window.scrollTo({ behavior: "smooth", top: 0 }));

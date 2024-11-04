@@ -1,8 +1,6 @@
 import { Flex, Heading, Text } from "@radix-ui/themes";
 import { SortedWasteProps } from "./type";
 
-import style from "./style.module.scss";
-
 export const SortedWaste = ({ tabIndex, ...props }: SortedWasteProps) => {
     return (
         <Flex

@@ -1,16 +1,15 @@
 .container {
-    background-color: var(--accent-2);
-    border-right    : 1px solid var(--accent-7);
-    padding         : var(--space-6) !important;
+    border-right: 1px solid var(--accent-7);
+    padding: var(--space-6) !important;
 
     .nav-link {
         text-decoration: none;
 
         .text {
-            text-align : center;
+            text-align: center;
             font-weight: 600;
-            color      : black;
-            padding    : var(--space-2) var(--space-2);
+            color: black;
+            padding: var(--space-2) var(--space-2);
 
             &:hover {
                 color: var(--green-9);
@@ -25,16 +24,16 @@
             }
 
             .icon {
-                text-align   : center;
-                font-size    : 1rem;
-                font-weight  : 600;
-                margin-right : var(--space-1);
-                color        : var(--green-9);
-                padding      : var(--space-1) var(--space-2);
+                text-align: center;
+                font-size: 1rem;
+                font-weight: 600;
+                margin-right: var(--space-1);
+                color: var(--green-9);
+                padding: var(--space-1) var(--space-2);
                 border-radius: var(--radius-2);
 
                 &.active {
-                    color           : var(--accent-11);
+                    color: var(--accent-11);
                     background-color: var(--accent-3);
 
                     &:hover {

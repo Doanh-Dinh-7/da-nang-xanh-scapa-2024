@@ -1,13 +1,12 @@
-import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
-import { CampaignProps } from "./type";
-import style from "./style.module.scss";
 import { Icon } from "@components";
+import { Flex, Heading, Text } from "@radix-ui/themes";
 import Campaign1 from "./images/campaign1.png";
 import Campaign2 from "./images/campaign2.png";
 import Campaign3 from "./images/campaign3.png";
 import Campaign4 from "./images/campaign4.png";
 import Campaign5 from "./images/campaign5.png";
 import Campaign6 from "./images/campaign6.png";
+import { CampaignProps } from "./type";
 
 export const Campaign = ({ ...props }: CampaignProps) => {
     return (

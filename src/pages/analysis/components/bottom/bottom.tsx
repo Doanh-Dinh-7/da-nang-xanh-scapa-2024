@@ -1,9 +1,8 @@
 import { Flex, Text } from "@radix-ui/themes";
-import { BottomProps } from "./type";
 import inorganicTrash from "./images/trash/inorganicTrash.png";
 import organicTrash from "./images/trash/organicTrash.png";
 import recycledTrash from "./images/trash/recycledTrash.png";
-import style from "./style.module.scss";
+import { BottomProps } from "./type";
 
 export const Bottom = ({ ...props }: BottomProps) => {
     return (
@@ -36,7 +35,7 @@ export const Bottom = ({ ...props }: BottomProps) => {
                         <img width="60px" height="60px" alt="Rác hữu cơ" src={organicTrash} />
                         <Flex direction="column" align="stretch" justify="center" style={{ marginLeft: "10px" }}>
                             <Text size="3" style={{ fontWeight: "700" }}>
-                                43kg
+                                20kg
                             </Text>
                             <Text size="2" color="green" style={{ fontWeight: "500" }}>
                                 Rác hữu cơ
@@ -48,7 +47,7 @@ export const Bottom = ({ ...props }: BottomProps) => {
                         <img width="60px" height="60px" alt="Rác vô cơ" src={inorganicTrash} />
                         <Flex direction="column" align="stretch" justify="center" style={{ marginLeft: "10px" }}>
                             <Text size="3" style={{ fontWeight: "700" }}>
-                                43kg
+                                26kg
                             </Text>
                             <Text size="2" color="green" style={{ fontWeight: "500" }}>
                                 Rác vô cơ

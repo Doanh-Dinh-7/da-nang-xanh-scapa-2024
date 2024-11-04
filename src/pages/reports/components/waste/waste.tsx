@@ -1,7 +1,6 @@
-import { Em, Flex, Heading, Text } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 import { WasteProps } from "./type";
 
-import style from "./style.module.scss";
 import { Icon } from "@components";
 
 export const Waste = ({ ...props }: WasteProps) => {

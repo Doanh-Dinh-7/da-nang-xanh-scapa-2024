@@ -1,9 +1,9 @@
 import { Seo } from "@global/components";
-import { Container, Flex, Heading, Section, Text } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 
 import { useEffect } from "react";
-import { ReportPageProps } from "./type";
 import { Application, Trash, Waste } from "./components";
+import { ReportPageProps } from "./type";
 
 export const ReportPage = ({}: ReportPageProps) => {
     useEffect(() => window.scrollTo({ behavior: "smooth", top: 0 }));

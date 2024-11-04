@@ -1,8 +1,6 @@
 import { Flex, Heading, Text } from "@radix-ui/themes";
 import { PointProps } from "./type";
 
-import style from "./style.module.scss";
-
 export const Point = ({ tabIndex, ...props }: PointProps) => {
     return (
         <Flex

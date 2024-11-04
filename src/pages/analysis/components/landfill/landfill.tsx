@@ -1,8 +1,6 @@
 import { Flex, Heading, Text } from "@radix-ui/themes";
 import { LandfillProps } from "./type";
 
-import style from "./style.module.scss";
-
 export const Landfill = ({ tabIndex, ...props }: LandfillProps) => {
     return (
         <Flex

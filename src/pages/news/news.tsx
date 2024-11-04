@@ -1,12 +1,12 @@
 import { Seo } from "@global/components";
-import { Container, Flex, Heading, Section, Text } from "@radix-ui/themes";
-
+import { Flex } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
-import { NewsPageProps } from "./type";
-import { TypeNews } from "./components/typeNew";
 import { Content } from "./components/content";
 import { Paper } from "./components/paper";
+import { TypeNews } from "./components/typeNew";
 import { Volunteer } from "./components/volunteer";
+import { NewsPageProps } from "./type";
+
 export const NewsPage = ({}: NewsPageProps) => {
     useEffect(() => window.scrollTo({ behavior: "smooth", top: 0 }));
 
