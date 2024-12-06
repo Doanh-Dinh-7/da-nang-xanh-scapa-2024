@@ -7,8 +7,18 @@ import Campaign4 from "./images/campaign4.png";
 import Campaign5 from "./images/campaign5.png";
 import Campaign6 from "./images/campaign6.png";
 import { CampaignProps } from "./type";
+import { useResponsive } from "@services/responsive";
 
 export const Campaign = ({ ...props }: CampaignProps) => {
+    const responsive = useResponsive({
+        initial: {
+            width: "80%",
+        },
+        md: {
+            width: "31%",
+        },
+    });
+
     return (
         <Flex direction="column" align="stretch" gap="8" p="4" style={{ width: "100%" }} {...props}>
             <Flex direction="column" align="start" justify="start" gap="5" style={{ width: "100%" }}>
@@ -17,19 +27,20 @@ export const Campaign = ({ ...props }: CampaignProps) => {
                     Cùng tham gia bảo vệ môi trường với chúng tôi
                 </Text>
             </Flex>
-            <Flex wrap="wrap" align="start" justify="between" gap="5">
+            <Flex wrap="wrap" align="center" justify="between" gap="5">
                 {CampaignItems.map((item, index) => (
                     <Flex
                         key={index}
                         direction="column"
                         gap="3"
                         style={{
-                            width: "31%",
-
+                            width: responsive.width,
                             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                             borderRadius: "1vw",
                             backgroundColor: "#fff",
+                            cursor: "pointer",
                         }}
+                        onClick={() => window.open(item.link, "_blank")}
                     >
                         <img
                             src={item.image}
@@ -101,6 +112,7 @@ export const CampaignItems = [
         percent: "70%",
         point: "1,758",
         target: "2,000",
+        link: "https://doanthanhnien.vn/tin-tuc/thanh-nien-tinh-nguyen/binh-thuan-hoat-dong-chien-dich-hay-lam-sach-bien-nam-2021",
     },
     {
         title: "Vì một tương lai xanh",
@@ -110,6 +122,7 @@ export const CampaignItems = [
         percent: "50%",
         point: "800",
         target: "1,600",
+        link: "https://c2badinh.badinh.edu.vn/bai-viet-cua-hoc-sinh/chien-dich-truyen-thong-vi-mot-tuong-lai-xanh-bao-ve-moi-truong-cua-cac-tuyen-truyen-vien-mang-non-7a5-pmtd22sw749",
     },
     {
         title: "Chiến dịch làm cho thế giới sạch hơn năm 2024",
@@ -119,6 +132,7 @@ export const CampaignItems = [
         percent: "40%",
         point: "1,688",
         target: "4,000",
+        link: "https://baochinhphu.vn/hanh-trinh-xanh-cua-chien-dich-lam-cho-the-gioi-sach-hon-2024-102240922123650077.htm",
     },
     {
         title: "Hưởng ứng ngày trái đất và môi trường",
@@ -128,6 +142,7 @@ export const CampaignItems = [
         percent: "80%",
         point: "1,354",
         target: "1,500",
+        link: "https://greenviet.org/tin-tuc/chien-dich-truyen-thong-huong-ung-ngay-trai-dat-va-moi-truong-the-gioi-nam-2023-ket-noi-cong-dong-tai-che-va-thu-gom-rac-thai-tren-ban-dao-son-tra/",
     },
     {
         title: "Chiến dịch Thanh niên tình nguyện Hè",
@@ -137,6 +152,7 @@ export const CampaignItems = [
         percent: "40%",
         point: "853",
         target: "2,000",
+        link: "https://doanthanhnien.vn/tin-tuc/chien-dich-tinh-nguyen-he/nghe-an-tich-cuc-cac-hoat-dong-bao-ve-moi-truong-trong-chien-dich-thanh-nien-tinh-nguyen-he",
     },
     {
         title: "Suy nghĩ xanh, Hành động xanh - Vì một môi trường xanh",
@@ -146,5 +162,6 @@ export const CampaignItems = [
         percent: "50%",
         point: "539",
         target: "1,000",
+        link: "https://www.sggp.org.vn/nhieu-hoat-dong-cua-thanh-nien-da-nang-chung-tay-bao-ve-moi-truong-post745917.html",
     },
 ];

@@ -1,11 +1,11 @@
 import { useApiMe } from "@api/http-request/requests/api-server/hooks/user";
 import { Icon } from "@components";
-import { Avatar, Button, Container, Flex, Heading, Text } from "@radix-ui/themes";
+import { Avatar, Button, Container, Flex, Heading, IconButton, Text } from "@radix-ui/themes";
 import { pushErrorNotification } from "@services/notification";
 import { useAppDispatch } from "@store";
 import { stringifyRequestError } from "@utilities";
 import cls from "classnames";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import LogoDemo from "../../images/logo/logoDNxanhDemo.jpg";
 import styles from "./style.module.scss";
@@ -13,6 +13,7 @@ import { NavigatorProps } from "./type";
 import { removeAccessToken } from "@services/cookie";
 import { removeUser, setUser } from "@services/global-states";
 import { Role } from "@api/http-request/requests/api-server/models/user";
+import { useResponsive } from "@services/responsive";
 
 const navigationItems = [
     {
@@ -57,8 +58,12 @@ const excludeNavigator = ["/claim-reward"];
 export const Navigator = ({ className, ...props }: NavigatorProps) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
     const location = useLocation();
+
+    const shouldShowStaticNavbar = useResponsive({ initial: true, md: false });
+    console.log({ shouldShowStaticNavbar });
+
+    const [shouldHideNavbar, setShouldHideNavbar] = useState<boolean>(true);
 
     const isAuthPage = ["/login", "/register"].includes(location.pathname);
 
@@ -114,7 +119,16 @@ export const Navigator = ({ className, ...props }: NavigatorProps) => {
     };
 
     return (
-        <Container className={cls(styles["container"], className)} {...props}>
+        <Container
+            className={cls(styles["container"], shouldShowStaticNavbar && styles["static"], shouldShowStaticNavbar && shouldHideNavbar && styles["hide"], className)}
+            {...props}
+        >
+            {shouldShowStaticNavbar && (
+                <IconButton className={styles["menu-button"]} onClick={() => setShouldHideNavbar(!shouldHideNavbar)}>
+                    {shouldHideNavbar ? <Icon ri="ri-menu-line" /> : <Icon ri="ri-close-line" />}
+                </IconButton>
+            )}
+
             <Flex direction="column" align="stretch" gap="9">
                 <Flex direction="column" justify="center" align="stretch" gap="6" wrap="wrap">
                     <Flex justify="center" align="center">

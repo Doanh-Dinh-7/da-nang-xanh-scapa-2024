@@ -1,6 +1,27 @@
 .container {
+    position: relative;
     border-right: 1px solid var(--accent-7);
     padding: var(--space-6) !important;
+    background-color: white;
+    z-index: 10;
+
+    &.static {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 272px;
+        height: 100%;
+    }
+
+    &.hide {
+        margin-left: -250px;
+    }
+
+    .menu-button {
+        position: absolute;
+        right: 0%;
+        transform: translateX(50%);
+    }
 
     .nav-link {
         text-decoration: none;

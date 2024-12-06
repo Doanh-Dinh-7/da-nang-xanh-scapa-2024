@@ -23,6 +23,7 @@ export const Volunteer = ({ ...props }: VolunteerProps) => {
                         cursor: "pointer",
                         alignItems: "center", // Center-aligns content vertically
                     }}
+                    onClick={() => window.open(item.link, "_blank")}
                 >
                     <img
                         src={item.image}
@@ -62,6 +63,7 @@ export const VolunteerItems = [
             "Ngày 19-2, Sở Tài nguyên và Môi trường (TN-MT) TP Đà Nẵng phối hợp với các cơ quan, đơn vị liên quan tổ chức lễ ra quân vệ sinh môi trường đầu năm 2022 và tăng cường các biện pháp phòng chống dịch bệnh truyền nhiễm trên địa bàn.",
         date: "19 Tháng 10, 2024",
         image: Image1,
+        link: "https://nld.com.vn/thoi-su/da-nang-khoi-dong-chien-dich-moi-truong-2022-2022021922175204.htm",
     },
     {
         title: "Đà Nẵng “mạnh tay” đầu tư cải thiện môi trường nước",
@@ -69,6 +71,7 @@ export const VolunteerItems = [
             "Trong đề án “Xây dựng Đà Nẵng – Thành phố môi trường” giai đoạn 2021-2030, TP. Đà Nẵng đặt mục tiêu tiếp tục duy trì, giữ vững và nâng cao các mục tiêu xây dựng thành phố môi trường theo đề án phê duyệt năm 2028. Phấn đấu đến năm 2025, Đà Nẵng đáp ứng các mục tiêu, chỉ tiêu đặt ra, ...",
         date: "01/10/2024",
         image: Image2,
+        link: "https://thoibaonganhang.vn/da-nang-manh-tay-dau-tu-cai-thien-moi-truong-nuoc-156196.html",
     },
     {
         title: 'Quyết tâm xây dựng "Thành phố môi trường"',
@@ -76,5 +79,6 @@ export const VolunteerItems = [
             "Sau 25 năm trở thành thành phố trực thuộc Trung ương (1997-2022), cùng với xây dựng, phát triển mở rộng không gian đô thị, chăm lo đời sống nhân dân, thành phố đã tập trung nhiều giải pháp xây dựng thành phố môi trường, thành phố xanh và đã đạt được nhiều kết quả nổi bật, góp phần đưa Đà Nẵng trở thành điểm đến hấp dẫn của ...",
         date: "12/01/2023",
         image: Image3,
+        link: "https://congan.danang.gov.vn/-/quyet-tam-xay-dung-thanh-pho-moi-truong-",
     },
 ];

@@ -11,10 +11,20 @@ import organicTrash from "./images/trash/organicTrash.png";
 import realTrashDemo from "./images/trash/realTrashDemo.png";
 import recycledTrash from "./images/trash/recycledTrash.png";
 import { BottomProps } from "./type";
+import { useResponsive } from "@services/responsive";
 
 export const Bottom = ({ ...props }: BottomProps) => {
     const dispatch = useAppDispatch();
     const { currentRecycleBinId } = useAppSelector((state) => state.home);
+
+    const responsive = useResponsive({
+        initial: {
+            imageWidth: "100px",
+        },
+        md: {
+            imageWidth: "unset",
+        },
+    });
 
     const { mutateAsync, data: smartRecycleBin } = useApiGetSmartRecycleBin();
 
@@ -58,7 +68,11 @@ export const Bottom = ({ ...props }: BottomProps) => {
                 <Button style={{ boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}>
                     <Icon ri="ri-corner-up-right-line"></Icon> Dẫn đường
                 </Button>
-                <img alt="ImageDemo" src={realTrashDemo} style={{ border: "5px solid white", borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }} />
+                <img
+                    alt="ImageDemo"
+                    src={realTrashDemo}
+                    style={{ border: "5px solid white", borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", width: responsive["imageWidth"] }}
+                />
             </Flex>
 
             <Flex

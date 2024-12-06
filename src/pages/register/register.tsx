@@ -1,17 +1,18 @@
+import { useApiRegister } from "@api/http-request/requests/api-server/hooks/user";
 import { Icon } from "@components";
 import { Seo } from "@global/components";
 import { Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { setAccessToken } from "@services/cookie";
 import { pushErrorNotification } from "@services/notification";
 import { useAppDispatch, useAppSelector } from "@store";
 import { stringifyFormError, stringifyRequestError } from "@utilities";
 import { useEffect, useState } from "react";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import BannerImage from "./images/bgDragon.png";
 import Logo from "./images/logo/logoDNxanhDemo.jpg";
-import { setAccessToken } from "@services/cookie";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RegisterFormInput, RegisterPageProps } from "./type";
-import { useApiRegister } from "@api/http-request/requests/api-server/hooks/user";
+import { useResponsive } from "@services/responsive";
 
 export const RegisterPage = ({}: RegisterPageProps) => {
     const dispatch = useAppDispatch();
@@ -23,6 +24,23 @@ export const RegisterPage = ({}: RegisterPageProps) => {
     const { register, handleSubmit } = useForm<RegisterFormInput>();
 
     const { mutateAsync, isPending } = useApiRegister();
+
+    const responsive = useResponsive({
+        initial: {
+            shouldShowImage: false,
+            containerDirection: "column",
+            width: "100%",
+            formWidth: "100vw",
+            formMargin: "20vh 0",
+        },
+        md: {
+            shouldShowImage: true,
+            containerDirection: "row",
+            width: "50%",
+            formWidth: "50vw",
+            formMargin: "20vh 7vw",
+        },
+    });
 
     useEffect(() => {
         if (accessToken) {
@@ -83,8 +101,8 @@ export const RegisterPage = ({}: RegisterPageProps) => {
     };
 
     return (
-        <Flex style={{ width: "100vw", height: "100vh", margin: "0 0 0 -1vw", padding: "0", position: "relative" }}>
-            <Flex style={{ width: "50%" }}>
+        <Flex direction={responsive["containerDirection"]} style={{ width: "100vw", height: "100vh", margin: "0 0 0 -1vw", padding: "0", position: "relative" }}>
+            <Flex style={{ width: responsive["width"], display: responsive["shouldShowImage"] ? "flex" : "none" }}>
                 <Flex justify="center" align="center" position="absolute" style={{ marginLeft: "3vw", marginTop: "3vh" }}>
                     <div style={{ borderRadius: "5px", backgroundColor: "white", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", padding: "5px" }}>
                         <div
@@ -106,8 +124,8 @@ export const RegisterPage = ({}: RegisterPageProps) => {
 
                 <img src={BannerImage} alt="Banner" style={{ width: "100%", height: "auto", display: "block" }} />
             </Flex>
-            <Flex align="center" justify="center" style={{ background: "linear-gradient(to right, #f0fff4, #ffffff)", height: "100vh", width: "50%" }}>
-                <Flex direction="column" gap="5" align="center" justify="center" style={{ margin: "20vh 7vw", height: "50vh", width: "50vw" }}>
+            <Flex align="center" justify="center" style={{ background: "linear-gradient(to right, #f0fff4, #ffffff)", height: "100vh", width: responsive["width"] }}>
+                <Flex direction="column" gap="5" align="center" justify="center" style={{ margin: responsive["formMargin"], height: "50vh", width: responsive["formWidth"] }}>
                     <Flex
                         direction="column"
                         align="center"
@@ -117,8 +135,8 @@ export const RegisterPage = ({}: RegisterPageProps) => {
                     >
                         <div
                             style={{
-                                height: "10vh",
-                                width: "5vw",
+                                width: "4rem",
+                                aspectRatio: "1/1",
                                 backgroundImage: `url(${Logo})`, // Chèn ảnh MapPng vào đây
                                 backgroundSize: "contain",
                                 backgroundPosition: "center",

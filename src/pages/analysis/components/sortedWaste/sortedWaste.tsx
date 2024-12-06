@@ -10,7 +10,7 @@ export const SortedWaste = ({ tabIndex, ...props }: SortedWasteProps) => {
             style={{
                 color: tabIndex === 1 ? "white" : "",
                 background: tabIndex === 1 ? "#039855" : "white",
-                padding: "15px 20px",
+                padding: "20px",
                 borderRadius: "10px",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
                 cursor: "pointer",

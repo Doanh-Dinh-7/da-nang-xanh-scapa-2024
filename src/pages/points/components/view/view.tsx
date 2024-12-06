@@ -1,19 +1,28 @@
 import { Flex, Text } from "@radix-ui/themes";
 import { ViewProps } from "./type";
 
+import { useResponsive } from "@services/responsive";
 import { useAppSelector } from "@store";
-import Start from "./images/star.png";
 
 export const View = ({ ...props }: ViewProps) => {
     const { user } = useAppSelector((state) => state.globalStates);
 
+    const responsive = useResponsive({
+        initial: {
+            containerDirection: "column",
+        },
+        md: {
+            containerDirection: "row",
+        },
+    });
+
     return (
-        <Flex align="center" gap="8" style={{ justifyContent: "space-between", width: "75vw" }} {...props}>
+        <Flex direction={responsive["containerDirection"]} gap="8" style={{ width: "75vw" }} {...props}>
             <Flex
+                flexGrow="1"
                 justify="center"
                 align="center"
                 style={{
-                    width: "45vw",
                     borderRadius: "10px",
                     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
                     background: "#05603A",
@@ -30,14 +39,13 @@ export const View = ({ ...props }: ViewProps) => {
                         <Text size="3">ĐIỂM XANH</Text>
                     </Flex>
                 </Flex>
-                <img src={Start} alt="start" style={{ height: "20vh", marginRight: "1vw" }} />
             </Flex>
             <Flex
+                flexGrow="1"
                 justify="center"
                 align="center"
                 style={{
                     height: "100%",
-                    width: "25vw",
                     borderRadius: "10px",
                     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
                     background: "#D1FADF",

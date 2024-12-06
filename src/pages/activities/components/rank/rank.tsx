@@ -8,9 +8,19 @@ import Team1 from "./images/team/Team1.png";
 import Team2 from "./images/team/Team2.png";
 import Team3 from "./images/team/Team3.png";
 import { RankProps } from "./type";
+import { useResponsive } from "@services/responsive";
 
 export const Rank = ({ ...props }: RankProps) => {
     const [dateTime, setDateTime] = useState(3);
+
+    const responsive = useResponsive({
+        initial: {
+            containerDirection: "column",
+        },
+        md: {
+            containerDirection: "row",
+        },
+    });
 
     const changeTime = (index: number) => {
         setDateTime(index);
@@ -53,7 +63,7 @@ export const Rank = ({ ...props }: RankProps) => {
                     </Button>
                 </Box>
             </Flex>
-            <Flex align="center" style={{ justifyContent: "space-between" }}>
+            <Flex direction={responsive.containerDirection} align="center" gap="4" style={{ justifyContent: "space-between" }}>
                 {MemberItems.map((item, index) => (
                     <Flex direction="column" style={{ borderRadius: "1vw", border: "1px solid #98A2B3" }}>
                         <Flex justify="center" align="center" gap="4" style={{ justifyContent: "space-between", borderBottom: "1px solid #98A2B3", padding: "1vw" }}>

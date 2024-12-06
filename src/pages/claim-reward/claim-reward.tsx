@@ -56,8 +56,11 @@ export const ClaimRewardPage = ({}: ClaimRewardPageProps) => {
                 ) : (
                     apiResponse && (
                         <Flex position="relative" direction="column" align="center" gap="6" className={styles["content"]}>
+                            <Heading as="h3" align="center" className={styles["subtitle"]}>
+                                CHÚC MỪNG
+                            </Heading>
                             <Heading as="h2" align="center" className={styles["title"]}>
-                                CHÚC MỪNG BẠN ĐÃ TÍCH ĐƯỢC
+                                BẠN ĐÃ TÍCH ĐƯỢC
                             </Heading>
                             <Heading as="h1" align="center" className={styles["green-point"]}>
                                 {apiResponse.greenPoint}
@@ -72,7 +75,6 @@ export const ClaimRewardPage = ({}: ClaimRewardPageProps) => {
                         </Flex>
                     )
                 )}
-
                 {error && (
                     <Flex position="relative" direction="column" align="center" gap="6" className={styles["content"]}>
                         <Heading as="h2" className={styles["title"]}>

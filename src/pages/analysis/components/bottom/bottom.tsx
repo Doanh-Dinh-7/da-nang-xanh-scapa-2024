@@ -3,8 +3,20 @@ import inorganicTrash from "./images/trash/inorganicTrash.png";
 import organicTrash from "./images/trash/organicTrash.png";
 import recycledTrash from "./images/trash/recycledTrash.png";
 import { BottomProps } from "./type";
+import { useResponsive } from "@services/responsive";
 
 export const Bottom = ({ ...props }: BottomProps) => {
+    const responsive = useResponsive({
+        initial: {
+            imageSize: "30px",
+            subtextSize: "1",
+        },
+        md: {
+            imageSize: "60px",
+            subtextSize: "2",
+        },
+    });
+
     return (
         <Flex direction="column" style={{ margin: "10px 0" }}>
             <Flex
@@ -21,35 +33,35 @@ export const Bottom = ({ ...props }: BottomProps) => {
             >
                 <Flex gap="5" style={{ padding: "10px", justifyContent: "space-around" }}>
                     <Flex>
-                        <img width="60px" height="60px" alt="Rác tái chế" src={recycledTrash} />
+                        <img width={responsive["imageSize"]} height={responsive["imageSize"]} alt="Rác tái chế" src={recycledTrash} />
                         <Flex direction="column" align="stretch" justify="center" style={{ marginLeft: "10px" }}>
                             <Text size="3" color="green" style={{ fontWeight: "700" }}>
                                 43kg
                             </Text>
-                            <Text size="2" style={{ fontWeight: "500" }}>
+                            <Text size={responsive["subtextSize"]} style={{ fontWeight: "500" }}>
                                 Rác tái chế
                             </Text>
                         </Flex>
                     </Flex>
                     <Flex>
-                        <img width="60px" height="60px" alt="Rác hữu cơ" src={organicTrash} />
+                        <img width={responsive["imageSize"]} height={responsive["imageSize"]} alt="Rác hữu cơ" src={organicTrash} />
                         <Flex direction="column" align="stretch" justify="center" style={{ marginLeft: "10px" }}>
                             <Text size="3" style={{ fontWeight: "700" }}>
                                 20kg
                             </Text>
-                            <Text size="2" color="green" style={{ fontWeight: "500" }}>
+                            <Text size={responsive["subtextSize"]} color="green" style={{ fontWeight: "500" }}>
                                 Rác hữu cơ
                             </Text>
                         </Flex>
                     </Flex>
 
                     <Flex>
-                        <img width="60px" height="60px" alt="Rác vô cơ" src={inorganicTrash} />
+                        <img width={responsive["imageSize"]} height={responsive["imageSize"]} alt="Rác vô cơ" src={inorganicTrash} />
                         <Flex direction="column" align="stretch" justify="center" style={{ marginLeft: "10px" }}>
                             <Text size="3" style={{ fontWeight: "700" }}>
                                 26kg
                             </Text>
-                            <Text size="2" color="green" style={{ fontWeight: "500" }}>
+                            <Text size={responsive["subtextSize"]} color="green" style={{ fontWeight: "500" }}>
                                 Rác vô cơ
                             </Text>
                         </Flex>

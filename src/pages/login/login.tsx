@@ -12,6 +12,7 @@ import Logo from "./images/logo/logoDNxanhDemo.jpg";
 import { LoginFormInput, LoginPageProps } from "./type";
 import { setAccessToken } from "@services/cookie";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useResponsive } from "@services/responsive";
 
 // import IconQuestion from "../../images/icons/iconQuestion.png";
 // import IconSettings from "../../images/icons/iconSettings.png";
@@ -65,6 +66,23 @@ export const LoginPage = ({}: LoginPageProps) => {
         );
     };
 
+    const responsive = useResponsive({
+        initial: {
+            shouldShowImage: false,
+            containerDirection: "column",
+            width: "100%",
+            formWidth: "100vw",
+            formMargin: "20vh 0",
+        },
+        md: {
+            shouldShowImage: true,
+            containerDirection: "row",
+            width: "50%",
+            formWidth: "50vw",
+            formMargin: "20vh 7vw",
+        },
+    });
+
     // Trạng thái kiểm tra xem mật khẩu đang được ẩn hay hiển thị
     const [showPassword, setShowPassword] = useState(true);
 
@@ -74,8 +92,8 @@ export const LoginPage = ({}: LoginPageProps) => {
     };
 
     return (
-        <Flex style={{ width: "100vw", height: "100vh", margin: "0 0 0 -1vw", padding: "0", position: "relative" }}>
-            <Flex style={{ width: "50%" }}>
+        <Flex direction={responsive["containerDirection"]} style={{ width: "100vw", height: "100vh", margin: "0 0 0 -1vw", padding: "0", position: "relative" }}>
+            <Flex style={{ width: responsive["containerDirection"], display: responsive["shouldShowImage"] ? "flex" : "none" }}>
                 <Flex justify="center" align="center" position="absolute" style={{ marginLeft: "3vw", marginTop: "3vh" }}>
                     <div style={{ borderRadius: "5px", backgroundColor: "white", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", padding: "5px" }}>
                         <div
@@ -97,8 +115,8 @@ export const LoginPage = ({}: LoginPageProps) => {
 
                 <img src={BannerImage} alt="Banner" style={{ width: "100%", height: "auto", display: "block" }} />
             </Flex>
-            <Flex align="center" justify="center" style={{ background: "linear-gradient(to right, #f0fff4, #ffffff)", height: "100vh", width: "50%" }}>
-                <Flex direction="column" gap="5" align="center" justify="center" style={{ margin: "20vh 7vw", height: "50vh", width: "50vw" }}>
+            <Flex align="center" justify="center" style={{ background: "linear-gradient(to right, #f0fff4, #ffffff)", height: "100vh", width: responsive["containerDirection"] }}>
+                <Flex direction="column" gap="5" align="center" justify="center" style={{ margin: responsive["formMargin"], height: "50vh", width: responsive["formWidth"] }}>
                     <Flex
                         direction="column"
                         align="center"
@@ -108,8 +126,8 @@ export const LoginPage = ({}: LoginPageProps) => {
                     >
                         <div
                             style={{
-                                height: "10vh",
-                                width: "5vw",
+                                width: "4rem",
+                                aspectRatio: "1/1",
                                 backgroundImage: `url(${Logo})`, // Chèn ảnh MapPng vào đây
                                 backgroundSize: "contain",
                                 backgroundPosition: "center",
