@@ -23,7 +23,9 @@ export const RegisterPage = ({}: RegisterPageProps) => {
 
     const { register, handleSubmit } = useForm<RegisterFormInput>();
 
-    const { mutateAsync, isPending } = useApiRegister();
+    // const { mutateAsync, isPending } = useApiRegister();
+
+    const isPending = false;
 
     const responsive = useResponsive({
         initial: {
@@ -42,45 +44,48 @@ export const RegisterPage = ({}: RegisterPageProps) => {
         },
     });
 
-    useEffect(() => {
-        if (accessToken) {
-            const redirectUrl = state?.redirectUrl || "/";
-            navigate(redirectUrl, {
-                replace: true,
-            });
-        }
+    // useEffect(() => {
+    //     if (accessToken) {
+    //         const redirectUrl = state?.redirectUrl || "/";
+    //         navigate(redirectUrl, {
+    //             replace: true,
+    //         });
+    //     }
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [accessToken]);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [accessToken]);
 
     const handleSendMessageSuccess: SubmitHandler<RegisterFormInput> = async (data) => {
-        try {
-            if (data.password !== data.retypePassword) {
-                dispatch(
-                    pushErrorNotification({
-                        message: "Không thể đăng ký",
-                        description: "Mật khẩu không trùng khớp",
-                    })
-                );
-                return;
-            }
+        // try {
+        //     if (data.password !== data.retypePassword) {
+        //         dispatch(
+        //             pushErrorNotification({
+        //                 message: "Không thể đăng ký",
+        //                 description: "Mật khẩu không trùng khớp",
+        //             })
+        //         );
+        //         return;
+        //     }
 
-            const RegisterResponse = await mutateAsync({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                email: data.email,
-                password: data.password,
-            });
+        //     const RegisterResponse = await mutateAsync({
+        //         firstName: data.firstName,
+        //         lastName: data.lastName,
+        //         email: data.email,
+        //         password: data.password,
+        //     });
 
-            dispatch(setAccessToken(RegisterResponse.accessToken));
-        } catch (error: any) {
-            dispatch(
-                pushErrorNotification({
-                    message: "Không thể đăng ký",
-                    description: stringifyRequestError(error),
-                })
-            );
-        }
+        //     dispatch(setAccessToken(RegisterResponse.accessToken));
+        // } catch (error: any) {
+        //     dispatch(
+        //         pushErrorNotification({
+        //             message: "Không thể đăng ký",
+        //             description: stringifyRequestError(error),
+        //         })
+        //     );
+        // }
+        navigate("/", {
+            replace: true,
+        });
     };
 
     const handleSendMessageError: SubmitErrorHandler<RegisterFormInput> = (error) => {

@@ -8,8 +8,8 @@ export enum PhysicalRecycleBinStatus {
 
 export interface IPhysicalRecycleBin extends IBase {
     embeddedSystemId: string;
-    maxVolume: 100;
-    currentVolume: 0;
+    maxVolume: number;
+    currentVolume: number;
     wasteType: WasteType;
     status: PhysicalRecycleBinStatus;
     smartRecycleBinId: string;

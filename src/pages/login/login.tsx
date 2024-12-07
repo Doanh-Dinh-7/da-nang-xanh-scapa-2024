@@ -26,35 +26,40 @@ export const LoginPage = ({}: LoginPageProps) => {
 
     const { register, handleSubmit } = useForm<LoginFormInput>();
 
-    const { mutateAsync, isPending } = useApiLogin();
+    // const { mutateAsync, isPending } = useApiLogin();
 
-    useEffect(() => {
-        if (accessToken) {
-            const redirectUrl = state?.redirectUrl || "/";
-            navigate(redirectUrl, {
-                replace: true,
-            });
-        }
+    // useEffect(() => {
+    //     if (accessToken) {
+    //         const redirectUrl = state?.redirectUrl || "/";
+    //         navigate(redirectUrl, {
+    //             replace: true,
+    //         });
+    //     }
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [accessToken]);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [accessToken]);
+
+    const isPending = false;
 
     const handleSendMessageSuccess: SubmitHandler<LoginFormInput> = async (data) => {
-        try {
-            const loginResponse = await mutateAsync({
-                email: data.email,
-                password: data.password,
-            });
+        // try {
+        //     const loginResponse = await mutateAsync({
+        //         email: data.email,
+        //         password: data.password,
+        //     });
 
-            dispatch(setAccessToken(loginResponse.accessToken));
-        } catch (error: any) {
-            dispatch(
-                pushErrorNotification({
-                    message: "Không thể đăng nhập",
-                    description: stringifyRequestError(error),
-                })
-            );
-        }
+        //     dispatch(setAccessToken(loginResponse.accessToken));
+        // } catch (error: any) {
+        //     dispatch(
+        //         pushErrorNotification({
+        //             message: "Không thể đăng nhập",
+        //             description: stringifyRequestError(error),
+        //         })
+        //     );
+        // }
+        navigate("/", {
+            replace: true,
+        });
     };
 
     const handleSendMessageError: SubmitErrorHandler<LoginFormInput> = (error) => {

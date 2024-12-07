@@ -11,32 +11,41 @@ import { Link, useSearchParams } from "react-router-dom";
 import { ClaimRewardPageProps } from "./type";
 
 import styles from "./styles.module.scss";
+import { ApiClaimRewardResponse } from "@api/http-request/requests/api-server/endpoints/smart-recycle-bin";
 
 export const ClaimRewardPage = ({}: ClaimRewardPageProps) => {
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
     const { user } = useAppSelector((state) => state.globalStates);
 
-    const { mutateAsync, data: apiResponse, error, isPending } = useApiClaimReward();
+    // const { mutateAsync, data: apiResponse, error, isPending } = useApiClaimReward();
 
-    useEffect(() => {
-        if (!user) return;
+    // useEffect(() => {
+    //     if (!user) return;
 
-        mutateAsync({
-            token: searchParams.get("token") || "",
-        })
-            .then()
-            .catch((error) => {
-                dispatch(
-                    pushErrorNotification({
-                        message: "Đã có lỗi xảy ra khi tích điểm",
-                        description: stringifyRequestError(error),
-                    })
-                );
-            });
+    //     mutateAsync({
+    //         token: searchParams.get("token") || "",
+    //     })
+    //         .then()
+    //         .catch((error) => {
+    //             dispatch(
+    //                 pushErrorNotification({
+    //                     message: "Đã có lỗi xảy ra khi tích điểm",
+    //                     description: stringifyRequestError(error),
+    //                 })
+    //             );
+    //         });
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user]);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [user]);
+
+    const apiResponse: ApiClaimRewardResponse = {
+        greenPoint: 100,
+        message: "string",
+    };
+
+    const isPending = false;
+    const error = false;
 
     return (
         <>

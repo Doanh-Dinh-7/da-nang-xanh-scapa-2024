@@ -1,5 +1,5 @@
 import { useApiGetSmartRecycleBin } from "@api/http-request/requests/api-server/hooks/smart-recycle-bin/use-api-get-smart-recycle-bin";
-import { WasteType } from "@api/http-request/requests/api-server/models/smart-recycle-bin";
+import { ISmartRecycleBin, SmartRecycleBinStatus, WasteType } from "@api/http-request/requests/api-server/models/smart-recycle-bin";
 import { Icon } from "@components";
 import { Button, Flex, Text } from "@radix-ui/themes";
 import { pushErrorNotification } from "@services/notification";
@@ -12,6 +12,7 @@ import realTrashDemo from "./images/trash/realTrashDemo.png";
 import recycledTrash from "./images/trash/recycledTrash.png";
 import { BottomProps } from "./type";
 import { useResponsive } from "@services/responsive";
+import { PhysicalRecycleBinStatus } from "@api/http-request/requests/api-server/models/physical-recycle-bin";
 
 export const Bottom = ({ ...props }: BottomProps) => {
     const dispatch = useAppDispatch();
@@ -26,24 +27,68 @@ export const Bottom = ({ ...props }: BottomProps) => {
         },
     });
 
-    const { mutateAsync, data: smartRecycleBin } = useApiGetSmartRecycleBin();
+    // const { mutateAsync, data: smartRecycleBin } = useApiGetSmartRecycleBin();
 
-    useEffect(() => {
-        if (currentRecycleBinId) {
-            mutateAsync({
-                id: currentRecycleBinId,
-            }).catch((error) => {
-                dispatch(
-                    pushErrorNotification({
-                        message: "Không thể lấy dữ liệu thùng rác thông minh",
-                        description: stringifyRequestError(error),
-                    })
-                );
-            });
-        }
+    // useEffect(() => {
+    //     if (currentRecycleBinId) {
+    //         mutateAsync({
+    //             id: currentRecycleBinId,
+    //         }).catch((error) => {
+    //             dispatch(
+    //                 pushErrorNotification({
+    //                     message: "Không thể lấy dữ liệu thùng rác thông minh",
+    //                     description: stringifyRequestError(error),
+    //                 })
+    //             );
+    //         });
+    //     }
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentRecycleBinId]);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [currentRecycleBinId]);
+
+    const smartRecycleBins: ISmartRecycleBin[] = [
+        {
+            id: "1",
+            name: "Thùng rác thông minh 1",
+            locationLatitude: 16.071192,
+            locationLongitude: 108.220053,
+            status: SmartRecycleBinStatus.HEALTHY,
+            physicalRecycleBins: [
+                {
+                    id: "1",
+                    status: PhysicalRecycleBinStatus.NORMAL,
+                    wasteType: WasteType.RECYCLABLE,
+                    currentVolume: 50,
+                    maxVolume: 100,
+                    smartRecycleBinId: "1",
+                    embeddedSystemId: "1",
+                    updatedAt: new Date().toLocaleString(),
+                },
+                {
+                    id: "2",
+                    status: PhysicalRecycleBinStatus.NORMAL,
+                    wasteType: WasteType.ORGANIC,
+                    currentVolume: 30,
+                    maxVolume: 100,
+                    smartRecycleBinId: "1",
+                    embeddedSystemId: "1",
+                    updatedAt: new Date().toLocaleString(),
+                },
+                {
+                    id: "3",
+                    status: PhysicalRecycleBinStatus.NORMAL,
+                    wasteType: WasteType.NON_RECYCLABLE,
+                    currentVolume: 20,
+                    maxVolume: 100,
+                    smartRecycleBinId: "1",
+                    embeddedSystemId: "1",
+                    updatedAt: new Date().toLocaleString(),
+                },
+            ],
+        },
+    ];
+
+    const smartRecycleBin = smartRecycleBins[0];
 
     const physicalRecycleBinStyleMap: Record<WasteType, any> = {
         [WasteType.RECYCLABLE]: {

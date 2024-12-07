@@ -12,7 +12,7 @@ import styles from "./style.module.scss";
 import { NavigatorProps } from "./type";
 import { removeAccessToken } from "@services/cookie";
 import { removeUser, setUser } from "@services/global-states";
-import { Role } from "@api/http-request/requests/api-server/models/user";
+import { IUser, Role } from "@api/http-request/requests/api-server/models/user";
 import { useResponsive } from "@services/responsive";
 
 const navigationItems = [
@@ -67,41 +67,56 @@ export const Navigator = ({ className, ...props }: NavigatorProps) => {
 
     const isAuthPage = ["/login", "/register"].includes(location.pathname);
 
-    const { mutateAsync, data: user, isPending } = useApiMe();
+    // const { mutateAsync, data: user, isPending } = useApiMe();
+
+    // useEffect(() => {
+    //     if (isAuthPage) return;
+
+    //     mutateAsync()
+    //         .then((user) => {
+    //             dispatch(setUser(user));
+    //         })
+    //         .catch((error) => {
+    //             const status = error.response?.status;
+
+    //             if (status === 401) {
+    //                 dispatch(removeAccessToken());
+    //                 dispatch(removeUser());
+
+    //                 navigate("/login", {
+    //                     replace: true,
+    //                     state: {
+    //                         redirectUrl: `${location.pathname}${location.search}`,
+    //                     },
+    //                 });
+    //                 return;
+    //             }
+
+    //             dispatch(
+    //                 pushErrorNotification({
+    //                     message: "Không thể lấy thông tin người dùng",
+    //                     description: stringifyRequestError(error),
+    //                 })
+    //             );
+    //         });
+
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [isAuthPage]);
+
+    const user: IUser = {
+        firstName: "Doanh",
+        lastName: "Đinh",
+        email: "dinhsyquocdoanh@gmail.com",
+        address: "Đà Nẵng",
+        greenPoint: 2000,
+        role: Role.ADMIN,
+    };
 
     useEffect(() => {
-        if (isAuthPage) return;
-
-        mutateAsync()
-            .then((user) => {
-                dispatch(setUser(user));
-            })
-            .catch((error) => {
-                const status = error.response?.status;
-
-                if (status === 401) {
-                    dispatch(removeAccessToken());
-                    dispatch(removeUser());
-
-                    navigate("/login", {
-                        replace: true,
-                        state: {
-                            redirectUrl: `${location.pathname}${location.search}`,
-                        },
-                    });
-                    return;
-                }
-
-                dispatch(
-                    pushErrorNotification({
-                        message: "Không thể lấy thông tin người dùng",
-                        description: stringifyRequestError(error),
-                    })
-                );
-            });
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isAuthPage]);
+        if (user) {
+            dispatch(setUser(user));
+        }
+    }, [user]);
 
     // Check not render the navigator case
     if (isAuthPage) return null;
@@ -198,7 +213,7 @@ export const Navigator = ({ className, ...props }: NavigatorProps) => {
                         </Flex>
                     )}
 
-                    {!isPending && !user && (
+                    {/* {!isPending && !user && (
                         <Flex direction="column">
                             <NavLink to="/login">
                                 <Button>Đăng nhập ngay!</Button>
@@ -207,7 +222,7 @@ export const Navigator = ({ className, ...props }: NavigatorProps) => {
                                 Cộng đồng đã tích <span style={{ color: "green", fontWeight: "600" }}>120k điểm xanh</span>. <br /> Còn bạn thì sao?
                             </Text>
                         </Flex>
-                    )}
+                    )} */}
                 </Flex>
             </Flex>
         </Container>
