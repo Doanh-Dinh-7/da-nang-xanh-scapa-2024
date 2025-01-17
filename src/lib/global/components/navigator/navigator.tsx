@@ -19,7 +19,7 @@ const navigationItems = [
     {
         title: "Thùng rác thông minh",
         icon: "ri-home-line",
-        to: "/",
+        to: "/home",
     },
     {
         title: "Tình trạng môi trường",
@@ -146,7 +146,7 @@ export const Navigator = ({ className, ...props }: NavigatorProps) => {
 
             <Flex direction="column" align="stretch" gap="9">
                 <Flex direction="column" justify="center" align="stretch" gap="6" wrap="wrap">
-                    <Flex justify="center" align="center">
+                    <Flex justify="center" align="center" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
                         <div style={{ borderRadius: "5px", backgroundColor: "white", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", padding: "2px" }}>
                             <div
                                 style={{
